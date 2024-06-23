@@ -18,7 +18,7 @@ I'm a japanese college student!
   <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=kotek-7&theme=tokyonight" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8&card_width=320&theme=tokyonight" />
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=kotek-7&layout=compact&langs_count=8&card_width=320&theme=tokyonight" />
 </a>
 
 ### My Trophies 🏆
