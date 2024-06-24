@@ -8,7 +8,7 @@ Here are some ideas to get you started:
 
 I'm a japanese college student!
 
-- 🔭 I’m currently working on something cool ✨
+- 🔭 I’m currently working on something cool (coming soon...) ✨
 - 🌱 I’m currently learning Rust 🦀, web development 🌐
 - ⚡ Fun fact: Love running 🏃, gaming 🎮 (modded minecraft, indie games)
 
