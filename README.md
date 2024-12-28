@@ -10,7 +10,7 @@ I'm a japanese college student!
 
 - 🔭 I’m currently working on something cool (coming soon...) ✨
 - 🌱 I’m currently learning Rust 🦀, web development 🌐
-- ⚡ Fun fact: Love running 🏃, gaming 🎮 (modded minecraft, indie games)
+- ⚡ Fun fact: Love running 🏃, gaming 🎮 (indie games)
 
 ### My Stats 💫
 
