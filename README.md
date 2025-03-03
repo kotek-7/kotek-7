@@ -25,4 +25,4 @@ I'm a japanese college student!
 
 ### My Trophies 🏆
 
-[![trophy](https://github-profile-trophy.vercel.app/?username=kotek-7&theme=tokyonight&rank=S,AAA,AA,A,B)](https://github.com/ryo-ma/github-profile-trophy)
+[![trophy](https://github-profile-trophy.vercel.app/?username=kotek-7&theme=tokyonight&rank=SECRET,SSS,SS,S,AAA,AA,A,B)](https://github.com/ryo-ma/github-profile-trophy)
