@@ -1,17 +1,5 @@
 # Hi, I'm kotek 👋
 
-<!--
-**kotek-7/kotek-7** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
--->
-
-I'm a japanese college student!
-
-- 🔭 I’m currently working on something cool (coming soon...) ✨
-- 🌱 I’m currently learning Rust 🦀, web development 🌐
-- ⚡ Fun fact: Love running 🏃, gaming 🎮
-
 ## My Stats 💫
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=kotek-7&theme=tokyonight" />
