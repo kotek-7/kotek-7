@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "kotek-7",
+  "compatibility_date": "2026-05-25",
+  "assets": {
+    "directory": "./dist"
+  },
+  "routes": [
+    {
+      "pattern": "kotek7.com",
+      "custom_domain": true
+    }
+  ]
+}
