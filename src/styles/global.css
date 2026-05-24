@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "Tsukushi Antique Gothic";
-  src: url("/fonts/FOT-TsukuAntiqueLGoStd-B.otf") format("opentype");
+  src: url("/fonts/FOT-TsukuAntiqueLGoStd-B.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: "DNP Shuei Go Gin";
-  src: url("/fonts/FOT-DNPShueiGoGinStd-L.otf") format("opentype");
+  src: url("/fonts/FOT-DNPShueiGoGinStd-L.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -18,7 +18,7 @@
 
 @font-face {
   font-family: "DNP Shuei Go Gin";
-  src: url("/fonts/FOT-DNPShueiGoGinStd-M.otf") format("opentype");
+  src: url("/fonts/FOT-DNPShueiGoGinStd-M.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -26,7 +26,7 @@
 
 @font-face {
   font-family: "DNP Shuei Go Gin";
-  src: url("/fonts/FOT-DNPShueiGoGinStd-B.otf") format("opentype");
+  src: url("/fonts/FOT-DNPShueiGoGinStd-B.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -36,16 +36,15 @@
   --color-text: #6cf685;
   --color-background: #35346e;
   --color-primary: #6cf685;
-  --color-secondary: #6cf685;
-  --color-accent: #25cfe1;
+  --color-secondary: #25cfe1;
 
-  --font-size-sm: 0.750rem;
+  --font-size-sm: 0.75rem;
   --font-size-base: 1rem;
   --font-size-xl: 1.333rem;
   --font-size-2xl: 1.777rem;
   --font-size-3xl: 2.369rem;
   --font-size-4xl: 3.158rem;
-  --font-size-5xl: 4.210rem;
+  --font-size-5xl: 4.21rem;
 
   --font-heading: "Jost", "Tsukushi Antique Gothic", sans-serif;
   --font-body: "Noto Sans", "DNP Shuei Go Gin", sans-serif;
@@ -56,77 +55,87 @@
   --font-weight-bold: 700;
 }
 
-:root {
-  color-scheme: dark;
-  background: var(--color-background);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: 100%;
-  font-weight: var(--font-weight-normal);
-  line-height: 1.7;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@layer base {
+  :root {
+    color-scheme: dark;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 100%;
+    font-weight: var(--font-weight-normal);
+    line-height: 1.7;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-html {
-  min-height: 100%;
-  background: var(--color-background);
-}
+  html {
+    min-height: 100%;
+    background: var(--color-background);
+  }
 
-body {
-  min-height: 100vh;
-  margin: 0;
-  background: var(--color-background);
-  color: var(--color-text);
-  font-family: var(--font-body);
-}
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-body);
+  }
 
-body:lang(ja) {
-  font-family: var(--font-ja-body);
-}
+  body:lang(ja) {
+    font-family: var(--font-ja-body);
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  color: var(--color-primary);
-  font-family: var(--font-heading);
-  font-weight: var(--font-weight-bold);
-  line-height: 1.18;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.18;
+  }
 
-:lang(ja) h1,
-:lang(ja) h2,
-:lang(ja) h3,
-:lang(ja) h4,
-:lang(ja) h5,
-:lang(ja) h6 {
-  font-family: var(--font-ja-heading);
-}
+  :lang(ja) h1,
+  :lang(ja) h2,
+  :lang(ja) h3,
+  :lang(ja) h4,
+  :lang(ja) h5,
+  :lang(ja) h6 {
+    font-family: var(--font-ja-heading);
+  }
 
-p {
-  margin: 0;
-}
+  p {
+    margin: 0;
+  }
 
-a {
-  color: var(--color-accent);
-  text-decoration-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
-  text-underline-offset: 0.18em;
-}
+  ul {
+    list-style-type: disc;
+    padding-left: 1.25rem;
+  }
 
-a:hover {
-  text-decoration-color: currentColor;
-}
-
-strong {
-  font-weight: var(--font-weight-bold);
-}
-
-::selection {
-  background: var(--color-accent);
-  color: var(--color-background);
+  a {
+    text-decoration-line: underline;
+    color: var(--color-primary);
+  }
+  a:visited {
+    color: color-mix(
+      in srgb,
+      var(--color-primary) 68%,
+      var(--color-background)
+    );
+  }
+  a[target="_blank"]::after {
+    content: "open_in_new";
+    font-family: "Material Symbols Outlined";
+    font-size: 0.9em;
+    font-weight: normal;
+    line-height: 1;
+    margin-left: 0.25em;
+    vertical-align: -0.1em;
+    display: inline-block;
+  }
 }

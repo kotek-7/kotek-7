@@ -1,0 +1,143 @@
+---
+import Layout from "../layouts/Layout.astro";
+import A from "../components/A.astro";
+---
+
+<Layout title="About | kotek のホームページ">
+  <main class="mt-16 grid gap-10">
+    <div class="grid gap-5">
+      <p
+        class="font-heading text-sm font-bold uppercase tracking-[0.18em] text-secondary"
+      >
+        about
+      </p>
+      <h1 class="max-w-4xl text-5xl">kotek</h1>
+    </div>
+
+    <div class="grid gap-5">
+      <p>
+        美味しい料理を食べることと、ファンタジー作品が好きです。<br />
+        コンピュータ技術に興味があります。
+      </p>
+    </div>
+
+    <section class="grid gap-5">
+      <h2 class="text-3xl">領域</h2>
+      <ul>
+        <li>Web フロントエンドアプリケーション</li>
+        <li>Web サーバーサイドアプリケーション</li>
+        <li>デスクトップ・CLIアプリケーション</li>
+        <li>ソフトウェアアーキテクチャ</li>
+        <li>組み込みファームウェア</li>
+        <li>デジタル回路・基板設計</li>
+      </ul>
+    </section>
+
+    <section class="grid gap-5">
+      <h2 class="text-3xl">使用技術</h2>
+      <div class="grid gap-4 lg:grid-cols-4 sm:grid-cols-2">
+        <div class="border border-primary/35 p-5">
+          <p class="text-sm font-bold text-secondary">Application Dev.</p>
+          <ul class="list-disc pl-5 mt-3">
+            <li>TypeScript</li>
+            <li>Next.js, React, Tailwind...</li>
+            <li>HTML/CSS</li>
+            <li>Rust</li>
+            <li>Docker</li>
+          </ul>
+        </div>
+        <div class="border border-primary/35 p-5">
+          <p class="text-sm font-bold text-secondary">Robotics</p>
+          <ul class="list-disc pl-5 mt-3">
+            <li>C/C++</li>
+            <li>HAL</li>
+            <li>PlatformIO</li>
+            <li>ROS2</li>
+            <li>KiCad</li>
+          </ul>
+        </div>
+        <div class="border border-primary/35 p-5">
+          <p class="text-sm font-bold text-secondary">勉強中/忘れぎみの技術</p>
+          <ul class="list-disc pl-5 mt-3">
+            <li>Go</li>
+            <li>Haskell</li>
+            <li>Python</li>
+            <li>C#/.NET</li>
+            <li>Flutter</li>
+          </ul>
+        </div>
+        <div class="border border-primary/35 p-5">
+          <p class="text-sm font-bold text-secondary">その他</p>
+          <ul class="list-disc pl-5 mt-3">
+            <li>Blender</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid gap-5">
+      <h2 class="text-3xl">所属</h2>
+      <ul>
+        <li><A href="https://doer-official.vercel.app/">同志社大学プログラミングサークル Do'er</A></li>
+        <li><A href="https://doshisharobot.org">同志社大学ロボット研究会 DRC</A></li>
+        <li><A href="https://kansai-harurobo.org/">関西春ロボコン実行委員会</A></li>
+        <li><A href="https://www.strike.co.jp">株式会社ストライク</A></li>
+        <li><A href="https://se.doshisha.ac.jp/se/education/course/electronics/overview.html">同志社大学 理工学部 電子工学科</A></li>
+      </ul>
+    </section>
+
+    <section class="grid gap-5">
+      <h2 class="text-3xl">経歴</h2>
+      <ul>
+        <li>2021-2023</li>
+        <ul>
+          <li><A href="https://aichi-asahigaoka.ed.jp/">愛知県立旭丘高等学校</A> 普通科</li>
+        </ul>
+        <li>2024-now</li>
+        <ul>
+          <li><A href="https://se.doshisha.ac.jp/se/education/course/electronics/overview.html">同志社大学 理工学部 電子工学科</A></li>
+        </ul>
+        <li>2025/04-2025/12</li>
+        <ul>
+          <li>
+            <A href="https://starup01.jp">株式会社STAR UP</A> インターンシップ
+          </li>
+        </ul>
+        <li>2025/12-now</li>
+        <ul>
+          <li>
+            <A href="https://strike.co.jp">株式会社ストライク</A> インターンシップ
+          </li>
+        </ul>
+      </ul>
+    </section>
+
+    <section class="grid gap-5">
+      <h2 class="text-3xl">リンク</h2>
+      <div class="grid gap-x-8 grid-cols-[auto_1fr]">
+        <div>GitHub</div>
+        <div>
+          <A href="https://github.com/kotek-7">@kotek-7</A>
+        </div>
+        <div>X</div>
+        <div>
+          <A href="https://x.com/kotek__D">@kotek__D</A>
+        </div>
+        <div>Instagram</div>
+        <div>
+          <A href="https://www.instagram.com/kotek__7/">@kotek__7</A>
+        </div>
+        <div>Qiita</div>
+        <div>
+          <A href="https://qiita.com/kotek">@kotek</A>
+        </div>
+        <div>Eメール</div>
+        <div>
+          <A href="mailto:scpktk@gmail.com">scpktk@gmail.com</A>
+        </div>
+      </div>
+    </section>
+
+    <div class="h-80"></div>
+  </main>
+</Layout>
