@@ -5,3 +5,26 @@ const { href } = Astro.props;
 <a href={href} target="_blank" rel="noopener noreferrer">
   <slot />
 </a>
+<style>
+  a {
+    text-decoration-line: underline;
+    color: var(--color-primary);
+  }
+  a:visited {
+    color: color-mix(
+      in srgb,
+      var(--color-primary) 68%,
+      var(--color-background)
+    );
+  }
+  a[target="_blank"]::after {
+    content: "open_in_new";
+    font-family: "Material Symbols Outlined";
+    font-size: 0.9em;
+    font-weight: normal;
+    line-height: 1;
+    margin-left: 0.25em;
+    vertical-align: -0.1em;
+    display: inline-block;
+  }
+</style>
