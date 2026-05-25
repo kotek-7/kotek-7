@@ -6,6 +6,16 @@ interface Props {
 }
 
 const { title = "kotek のホームページ" } = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const navItems = [
+  { href: "/", label: "home" },
+  { href: "/about", label: "about" },
+  { href: "/activities", label: "activities" },
+  { href: "/posts", label: "posts" },
+];
+
+const isCurrentPage = (href: string) =>
+  href === "/" ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
 ---
 
 <html lang="ja">
@@ -30,32 +40,26 @@ const { title = "kotek のホームページ" } = Astro.props;
     </div>
     <nav class="fixed bottom-0 left-0 right-0 z-10 bg-background">
       <div
-        class="mx-auto flex max-w-5xl items-center justify-between gap-2 md:gap-10 px-4 py-4 sm:px-10 lg:px-16"
+        class="mx-auto flex max-w-5xl items-center justify-between gap-0 md:gap-10 px-4 py-4 sm:px-10 lg:px-16"
       >
-        <a
-          href="/"
-          class="w-fit border-t-2 border-transparent px-2 md:px-5 py-2 font-heading text-sm md:text-xl uppercase tracking-[0.18em] text-primary hover:border-primary/35 no-underline"
-        >
-          home
-        </a>
-        <a
-          href="/about"
-          class="w-fit border-t-2 border-transparent px-2 md:px-5 py-2 font-heading text-sm md:text-xl uppercase tracking-[0.18em] text-primary hover:border-primary/35 no-underline"
-        >
-          about
-        </a>
-        <a
-          href="/activities"
-          class="w-fit border-t-2 border-transparent px-2 md:px-5 py-2 font-heading text-sm md:text-xl uppercase tracking-[0.18em] text-primary hover:border-primary/35 no-underline"
-        >
-          activities
-        </a>
-        <a
-          href="/posts"
-          class="w-fit border-t-2 border-transparent px-2 md:px-5 py-2 font-heading text-sm md:text-xl uppercase tracking-[0.18em] text-primary hover:border-primary/35 no-underline"
-        >
-          posts
-        </a>
+        {navItems.map(({ href, label }) => {
+          const isCurrent = isCurrentPage(href);
+
+          return (
+            <a
+              href={href}
+              aria-current={isCurrent ? "page" : undefined}
+              class:list={[
+                "w-fit border-t-2 px-2 py-2 font-heading text-sm uppercase tracking-[0.18em] no-underline sm:px-5 sm:text-xl",
+                isCurrent
+                  ? "border-accent text-accent"
+                  : "border-transparent text-primary hover:border-primary/35",
+              ]}
+            >
+              {label}
+            </a>
+          );
+        })}
       </div>
     </nav>
   </body>
