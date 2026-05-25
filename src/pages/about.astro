@@ -1,10 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import A from "../components/A.astro";
+import { Image } from "astro:assets";
 ---
 
 <Layout title="About | kotek のホームページ">
-  <main class="mt-16 grid gap-10">
+  <main class="mt-16 grid gap-10 relative">
+    <Image src="/images/icon.jpg" alt="Icon." width=200 height=200 class="absolute top-0 right-0 w-20 h-20 md:w-40 md:h-40" />
     <div class="grid gap-5">
       <p
         class="font-heading text-sm font-bold uppercase tracking-[0.18em] text-accent"
