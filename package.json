@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "fonts": "node scripts/build-fonts.mjs",
+    "dev": "pnpm fonts && astro dev",
+    "build": "pnpm fonts && astro build",
+    "check:assets": "node scripts/check-assets.mjs",
     "preview": "astro preview",
     "deploy": "pnpm build && wrangler deploy"
   },

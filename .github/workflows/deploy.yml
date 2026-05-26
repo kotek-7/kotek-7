@@ -35,11 +35,24 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-fonts.txt
+
+      - name: Install font tools
+        run: pip install -r requirements-fonts.txt
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build site
         run: pnpm build
+
+      - name: Check asset budget
+        run: pnpm check:assets
 
   deploy:
     name: Deploy to Cloudflare Workers
@@ -64,11 +77,24 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-fonts.txt
+
+      - name: Install font tools
+        run: pip install -r requirements-fonts.txt
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build site
         run: pnpm build
+
+      - name: Check asset budget
+        run: pnpm check:assets
 
       - name: Deploy Worker
         uses: cloudflare/wrangler-action@v3

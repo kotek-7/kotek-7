@@ -1,36 +1,5 @@
 @import "tailwindcss";
-
-@font-face {
-  font-family: "Tsukushi Antique Gothic";
-  src: url("/fonts/FOT-TsukuAntiqueLGoStd-B.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "DNP Shuei Go Gin";
-  src: url("/fonts/FOT-DNPShueiGoGinStd-L.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "DNP Shuei Go Gin";
-  src: url("/fonts/FOT-DNPShueiGoGinStd-M.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "DNP Shuei Go Gin";
-  src: url("/fonts/FOT-DNPShueiGoGinStd-B.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+@import "./fonts.generated.css";
 
 @theme {
   --color-text: #6cf685;
