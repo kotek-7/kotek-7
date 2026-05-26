@@ -3,3 +3,5 @@ dist
 .astro
 .wrangler
 public/fonts/*.woff2
+src/styles/fonts.generated.css
+src/components/FontPreloads.astro
