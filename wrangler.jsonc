@@ -7,7 +7,7 @@
   },
   "routes": [
     {
-      "pattern": "kotek7.com",
+      "pattern": "www.kotek7.com",
       "custom_domain": true
     }
   ]
