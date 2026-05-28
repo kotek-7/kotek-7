@@ -1,8 +1,17 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Tag from "../../components/Tag.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("posts")).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
 ---
 
-<Layout title="Posts | kotek のホームページ" description="ブログ記事や技術投稿を掲載しています。">
+<Layout
+  title="Posts | kotek のホームページ"
+  description="ブログ記事や技術投稿を掲載しています。"
+>
   <main class="mt-16 grid gap-10">
     <div class="grid gap-5">
       <p
@@ -15,12 +24,37 @@ import Layout from "../../layouts/Layout.astro";
 
     <div class="grid gap-5">
       <p class="max-w-2xl">
-        ここでは、私がこれまでに書いたブログ記事や技術的な投稿を紹介します。新しい技術の解説や、プロジェクトの進捗報告など、様々な内容を掲載しています。
+        ブログ記事です。
       </p>
     </div>
 
     <section class="grid gap-5">
-      <h2 class="text-3xl">実装中……</h2>
+      {
+        posts.length > 0 ? (
+          <ul class="grid gap-4 list-none pl-0">
+            {posts.map((post) => (
+              <a href={`/posts/${post.id}`}>
+                <li class="px-4 md:px-8 py-4 grid border border-primary/35 hover:bg-primary/5 transition">
+                  <p class="text-sm text-primary/70">
+                    投稿日: {post.data.pubDate.toLocaleDateString("ja-JP")}
+                  </p>
+                  <p class="text-lg font-bold text-primary">
+                    {post.data.title}
+                  </p>
+                  <p>{post.data.description}</p>
+                  <p class="flex gap-2 mt-2">
+                    {post.data.tags?.map((tag) => (
+                      <Tag name={tag} />
+                    ))}
+                  </p>
+                </li>
+              </a>
+            ))}
+          </ul>
+        ) : (
+          <p>まだ投稿がありません。</p>
+        )
+      }
     </section>
 
     <div class="h-80"></div>

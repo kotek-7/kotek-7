@@ -1,0 +1,165 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Tag from "../../components/Tag.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout
+  title={post.data.title + " | kotek のホームページ"}
+  description={post.data.description}
+>
+  <main class="mt-16 grid gap-10">
+    <div class="grid gap-5">
+      <div
+        class="flex items-center gap-2 text-sm text-primary/70 hover:text-primary transition-colors cursor-pointer"
+        onclick="history.back()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          class="fill-primary"
+          ><path
+            d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"
+          ></path></svg
+        >
+        記事一覧に戻る
+      </div>
+      <h1 class="text-3xl">{post.data.title}</h1>
+      <div class="grid gap-2">
+        <div class="flex gap-5 text-sm text-primary/70">
+          <time datetime={post.data.pubDate.toISOString()}>
+            投稿日: {post.data.pubDate.toLocaleDateString("ja-JP")}
+          </time>
+          <time datetime={post.data.pubDate.toISOString()}>
+            更新日: {
+              post.data.updatedDate?.toLocaleDateString("ja-JP") ??
+                post.data.pubDate.toLocaleDateString("ja-JP")
+            }
+          </time>
+        </div>
+        <div class="flex gap-2">
+          {post.data.tags?.map((tag) => <Tag name={tag} />)}
+        </div>
+      </div>
+    </div>
+    <hr class="border-primary/35" />
+    <article class="markdown">
+      <Content />
+    </article>
+  </main>
+
+  <style is:global>
+    @reference "../../styles/global.css";
+    .markdown {
+      display: grid;
+      max-width: 42rem;
+      gap: 1.25rem;
+      padding-bottom: 20rem;
+      line-height: 1.9;
+    }
+
+    .markdown > :first-child {
+      margin-top: 0;
+    }
+
+    .markdown h1,
+    .markdown h2,
+    .markdown h3 {
+      @apply font-ja-body;
+    }
+
+    .markdown h1 {
+      font-size: var(--font-size-2xl);
+      border-bottom: 1px solid
+        color-mix(in srgb, var(--color-primary) 35%, transparent);
+      padding-bottom: 0.2rem;
+      margin-top: 4rem;
+    }
+
+    .markdown h2 {
+      border-bottom: 1px solid
+        color-mix(in srgb, var(--color-primary) 35%, transparent);
+      padding-bottom: 0.2rem;
+      font-size: var(--font-size-xl);
+      margin-top: 2rem;
+    }
+
+    .markdown h3 {
+      font-size: var(--font-size-lg);
+      margin-top: 1rem;
+    }
+
+    .markdown p,
+    .markdown li {
+      color: color-mix(in srgb, var(--color-text) 88%, white);
+    }
+
+    .markdown a {
+      text-decoration-line: underline;
+      color: var(--color-primary);
+    }
+
+    .markdown a:visited {
+      color: color-mix(
+        in srgb,
+        var(--color-primary) 68%,
+        var(--color-background)
+      );
+    }
+
+    .markdown ul,
+    .markdown ol {
+      display: grid;
+      gap: 0.4rem;
+      padding-left: 1.4rem;
+    }
+
+    .markdown ol {
+      list-style-type: decimal;
+    }
+
+    .markdown blockquote {
+      margin: 0;
+      border-left: 2px solid var(--color-accent);
+      padding-left: 1rem;
+      color: color-mix(in srgb, var(--color-text) 76%, transparent);
+    }
+
+    .markdown code {
+      border: 1px solid
+        color-mix(in srgb, var(--color-primary) 24%, transparent);
+      background: color-mix(in srgb, var(--color-background) 82%, black);
+      padding: 0.1em 0.35em;
+      font-size: 0.92em;
+    }
+
+    .markdown pre {
+      overflow-x: auto;
+      border: 1px solid
+        color-mix(in srgb, var(--color-primary) 30%, transparent);
+      background: color-mix(in srgb, var(--color-background) 78%, black);
+      padding: 1rem;
+      line-height: 1.6;
+    }
+
+    .markdown pre code {
+      border: 0;
+      background: transparent;
+      padding: 0;
+    }
+  </style>
+</Layout>

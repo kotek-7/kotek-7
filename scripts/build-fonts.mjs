@@ -8,11 +8,43 @@ const generatedStylePath = "src/styles/fonts.generated.css";
 const generatedPreloadPath = "src/components/FontPreloads.astro";
 const layoutText = readFileSync("src/layouts/Layout.astro", "utf8");
 
+function collectFiles(directory, extensions) {
+  return readdirSync(directory, { withFileTypes: true })
+    .flatMap((entry) => {
+      const path = join(directory, entry.name);
+
+      if (entry.isDirectory()) {
+        return collectFiles(path, extensions);
+      }
+
+      return extensions.some((extension) => entry.name.endsWith(extension)) ? [path] : [];
+    })
+    .sort();
+}
+
+const postContentSources = collectFiles("src/content/posts", [".md", ".mdx"]);
+
+// 日本語フォントのフルサイズは大きいため、表示範囲ごとに必要なグリフだけを切り出す。
+// /posts 配下は一覧と記事本文を同じサブセットにまとめ、ページ間のフォント再取得を避ける。
 const routes = [
-  { path: "/", key: "home", source: "src/pages/index.astro", usesBodyBold: true },
-  { path: "/about", key: "about", source: "src/pages/about.astro", usesBodyBold: true },
-  { path: "/activities", key: "activities", source: "src/pages/activities.astro", usesBodyBold: false },
-  { path: "/posts", key: "posts", source: "src/pages/posts/index.astro", usesBodyBold: false },
+  { path: "/", key: "home", sources: ["src/pages/index.astro"], usesBodyBold: true },
+  { path: "/about", key: "about", sources: ["src/pages/about.astro"], usesBodyBold: true },
+  {
+    path: "/activities",
+    key: "activities",
+    sources: ["src/pages/activities.astro"],
+    usesBodyBold: false,
+  },
+  {
+    path: "/posts",
+    key: "posts",
+    sources: [
+      "src/pages/posts/index.astro",
+      "src/pages/posts/[...id].astro",
+      ...postContentSources,
+    ],
+    usesBodyBold: false,
+  },
 ];
 
 function uniqueCharacters(text) {
@@ -22,6 +54,7 @@ function uniqueCharacters(text) {
 function subsetFont({ source, stem, text }) {
   const temporaryPath = join(publicFontDir, `${stem}.tmp.woff2`);
 
+  // 未使用グリフを除外しつつ、約物や日本語組版の挙動は元フォントに合わせる。
   execFileSync("pyftsubset", [
     source,
     `--text=${text}`,
@@ -52,9 +85,13 @@ for (const file of readdirSync(publicFontDir)) {
 }
 
 const commonText = uniqueCharacters(
-  [layoutText, ...routes.map(({ source }) => readFileSync(source, "utf8"))].join("\n"),
+  [
+    layoutText,
+    ...routes.flatMap(({ sources }) => sources.map((source) => readFileSync(source, "utf8"))),
+  ].join("\n"),
 );
 
+// 英字とアイコンフォントはサブセット化後のサイズが小さいため、全ページで共有してキャッシュを効かせる。
 const commonFonts = {
   jostRegular: subsetFont({
     source: "font-source/Jost-Regular.ttf",
@@ -73,9 +110,13 @@ const commonFonts = {
   }),
 };
 
+// 日本語の見出し・本文フォントは、各ページと共通レイアウトの文字だけを含むサブセットを生成する。
+// 生成した Astro コンポーネント側で、現在のルートに対応するフォントを選ぶ。
 const routeFonts = Object.fromEntries(
-  routes.map(({ key, path, source, usesBodyBold }) => {
-    const text = uniqueCharacters(`${layoutText}\n${readFileSync(source, "utf8")}`);
+  routes.map(({ key, path, sources, usesBodyBold }) => {
+    const text = uniqueCharacters(
+      [layoutText, ...sources.map((source) => readFileSync(source, "utf8"))].join("\n"),
+    );
 
     return [
       path,
@@ -102,6 +143,7 @@ const routeFonts = Object.fromEntries(
   }),
 );
 
+// 共通フォントの @font-face は global CSS に出し、日本語フォントは FontPreloads.astro でページごとに埋め込む。
 const css = `@font-face {
   font-family: "Jost";
   src: url("/fonts/${commonFonts.jostRegular}") format("woff2");
@@ -127,6 +169,8 @@ const css = `@font-face {
 }
 `;
 
+// 現在のルートで使うフォントだけを preload する。
+// 記事ページは /posts 一覧と同じサブセットを再利用する。
 const preloadComponent = `---
 const pathname = Astro.url.pathname.replace(/\\/+$/, "") || "/";
 const routePath = pathname.startsWith("/posts/") ? "/posts" : pathname;
