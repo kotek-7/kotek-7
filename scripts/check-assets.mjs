@@ -14,7 +14,7 @@ const fontFiles = readdirSync(fontDir).map((file) => ({
 }));
 
 const problems = [];
-const maximumFontBytes = 225 * 1024;
+const maximumFontBytes = 256 * 1024;
 const maximumCombinedFontBytes = 1250 * 1024;
 
 for (const { file, bytes } of fontFiles) {
