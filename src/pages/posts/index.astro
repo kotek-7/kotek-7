@@ -34,11 +34,11 @@ const posts = (await getCollection("posts")).sort(
           <ul class="grid gap-4 list-none pl-0">
             {posts.map((post) => (
               <a href={`/posts/${post.id}`}>
-                <li class="px-4 md:px-8 py-4 grid border border-primary/35 hover:bg-primary/5 transition">
+                <li class="px-4 md:px-8 py-4 grid gap-1 border border-primary/35 hover:bg-primary/5 transition">
                   <p class="text-sm text-primary/70">
                     投稿日: {post.data.pubDate.toLocaleDateString("ja-JP")}
                   </p>
-                  <p class="text-lg font-bold text-primary">
+                  <p class="text-lg font-bold text-primary mt-1">
                     {post.data.title}
                   </p>
                   <p>{post.data.description}</p>
