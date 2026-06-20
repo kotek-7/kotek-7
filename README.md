@@ -3,4 +3,5 @@
 
 ![](http://github-profile-summary-cards.vercel.app/api/cards/stats?username=kotek-7&theme=github_dark) ![](http://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=kotek-7&theme=github_dark)
 
-[![trophy](https://github-profile-trophy.vercel.app/?username=kotek-7&theme=darkhub&rank=SECRET,SSS,SS,S,AAA,AA,A,B&margin-w=4&no-frame=true)](https://github.com/ryo-ma/github-profile-trophy)
+[![trophy](https://trophygithubreadmelang.cybee.dpdns.org/?username=kotek-7&theme=darkhub&rank=SECRET,SSS,SS,S,AAA,AA,A,B&margin-w=4&no-frame=true)](https://github.com/ryo-ma/github-profile-trophy)
+
